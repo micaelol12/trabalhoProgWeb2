@@ -2,6 +2,8 @@ package com.mlconti.demo.domain;
 
 import java.io.Serializable;
 
+import org.hibernate.validator.constraints.Length;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,7 +25,8 @@ public class Categoria implements Serializable {
         this.cd_categoria = cd_categoria;
     }
 
-    @NotEmpty
+    @NotEmpty(message = "Campo DS_CATEGORIA não pode ser vazio!")
+    @Length(min = 5, max = 255, message = "Campo DS_CATEGORIA deve ter entre 5 e 40 caracteres")
     private String ds_categoria;
 
     public String getDs_categoria() {

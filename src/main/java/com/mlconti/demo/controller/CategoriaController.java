@@ -1,16 +1,21 @@
 package com.mlconti.demo.controller;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.mlconti.demo.domain.Categoria;
+import com.mlconti.demo.exceptions.ObjectNotFoundException;
 import com.mlconti.demo.repository.CategoriaRepository;
 
 import jakarta.validation.Valid;
@@ -29,5 +34,31 @@ public class CategoriaController {
         URI vUri = ServletUriComponentsBuilder.fromCurrentRequest().path("/categoria/{id}")
                 .buildAndExpand(pCategoria.getCd_categoria()).toUri();
         return ResponseEntity.created(vUri).body(pCategoria);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Categoria>> getAll() {
+        List<Categoria> categorias = caterogiaRepository.findAll();
+        return ResponseEntity.ok().body(categorias);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Categoria> getById(@PathVariable Integer id) {
+        Categoria departamento = caterogiaRepository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException("Categoria " + id + " não encontrada"));
+
+        return ResponseEntity.ok().body(departamento);
+    }
+
+    
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Categoria> updateCategory(@Valid @PathVariable Integer id,@RequestBody Categoria pCategoria){
+        Categoria categoriaAtual = caterogiaRepository.findById(id).orElseThrow(
+            () -> new ObjectNotFoundException("Categoria  "+ id + " não encontrada"));
+
+
+            categoriaAtual.setDs_categoria(pCategoria.getDs_categoria());
+            caterogiaRepository.save(categoriaAtual);
+            return ResponseEntity.ok().body(categoriaAtual);
     }
 }
