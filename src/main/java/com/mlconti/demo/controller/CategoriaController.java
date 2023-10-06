@@ -2,9 +2,11 @@ package com.mlconti.demo.controller;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,8 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.mlconti.demo.domain.Categoria;
+import com.mlconti.demo.domain.DeleteError;
 import com.mlconti.demo.exceptions.ObjectNotFoundException;
 import com.mlconti.demo.repository.CategoriaRepository;
+import com.mlconti.demo.services.CategoriaServices;
 
 import jakarta.validation.Valid;
 
@@ -26,6 +30,9 @@ public class CategoriaController {
 
     @Autowired
     private CategoriaRepository caterogiaRepository;
+
+    @Autowired
+    private CategoriaServices categoriaServices;
 
     @PostMapping
     public ResponseEntity<Categoria> create(@Valid @RequestBody Categoria pCategoria) {
@@ -50,15 +57,21 @@ public class CategoriaController {
         return ResponseEntity.ok().body(departamento);
     }
 
-    
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Categoria> updateCategory(@Valid @PathVariable Integer id,@RequestBody Categoria pCategoria){
+    public ResponseEntity<Categoria> updateCategory(@Valid @PathVariable Integer id,
+            @RequestBody Categoria pCategoria) {
         Categoria categoriaAtual = caterogiaRepository.findById(id).orElseThrow(
-            () -> new ObjectNotFoundException("Categoria  "+ id + " não encontrada"));
+                () -> new ObjectNotFoundException("Categoria  " + id + " não encontrada"));
 
+        categoriaAtual.setDs_categoria(pCategoria.getDs_categoria());
+        caterogiaRepository.save(categoriaAtual);
+        return ResponseEntity.ok().body(categoriaAtual);
+    }
 
-            categoriaAtual.setDs_categoria(pCategoria.getDs_categoria());
-            caterogiaRepository.save(categoriaAtual);
-            return ResponseEntity.ok().body(categoriaAtual);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<DeleteError> deleteCategoria(@PathVariable Integer id) {
+        DeleteError response = categoriaServices.deleteCategoria(id);
+
+        return ResponseEntity.ok().body(response);
     }
 }
