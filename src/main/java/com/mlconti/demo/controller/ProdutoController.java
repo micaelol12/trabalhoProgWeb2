@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.mlconti.demo.domain.Produto;
+import com.mlconti.demo.exceptions.ObjectNotFoundException;
 import com.mlconti.demo.repository.ProdutoRespository;
 import com.mlconti.demo.services.ProdutoServices;
 
@@ -44,6 +45,14 @@ public class ProdutoController {
     public ResponseEntity<List<Produto>> getAll() {
         List<Produto> produtos = produtoRespository.findAll();
         return ResponseEntity.ok().body(produtos);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Produto> getById(@PathVariable Integer id) {
+        Produto produto = produtoRespository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException("Produto " + id + " não encontrado"));
+
+        return ResponseEntity.ok().body(produto);
     }
 
 }
