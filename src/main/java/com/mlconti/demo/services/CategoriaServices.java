@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.mlconti.demo.domain.Categoria;
 import com.mlconti.demo.domain.DeleteError;
-import com.mlconti.demo.exceptions.DataIntegryViolationException;
 import com.mlconti.demo.repository.CategoriaRepository;
 
 @Service
@@ -31,7 +30,7 @@ public class CategoriaServices {
             categoriaRepository.deleteById(pIdCategoria);
 
         } catch (DataIntegrityViolationException e) {
-            mensagem.setMensagem("Categoria " + pIdCategoria + " não pode ser excluída. Pois possui categorias alocadass!");
+            mensagem.setMensagem("Categoria " + pIdCategoria + " não pode ser excluída. Pois possui produtos alocados!");
             mensagem.setType("ERRO");
             return mensagem;
         }
