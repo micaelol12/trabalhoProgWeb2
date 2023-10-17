@@ -10,7 +10,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 
 @Entity
@@ -77,11 +76,11 @@ public class Produto {
         this.vl_produto = vl_produto;
     }
 
-    public Categoria getCd_categoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCd_categoria(Categoria categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 

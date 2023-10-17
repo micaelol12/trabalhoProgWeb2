@@ -23,7 +23,7 @@ public class ProdutoServices {
                 .orElseThrow(() -> new ObjectNotFoundException("Categoria " + pIdCategoria + " não encontrada!"));
 
         pProduto.setCd_produto(null);
-        pProduto.setCd_categoria(categoriaProduto);
+        pProduto.setCategoria(categoriaProduto);
 
         return produtoRespository.save(pProduto);
     }
