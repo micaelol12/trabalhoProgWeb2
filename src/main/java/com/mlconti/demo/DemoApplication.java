@@ -22,8 +22,10 @@ public class DemoApplication {
 
 
 			Categoria cate1 = new Categoria(null,"esporte");
+			Categoria cate2 = new Categoria(null,"lazer");
 
 			categoriaRepository.save(cate1);
+			categoriaRepository.save(cate2);
 		};
 	}
 }

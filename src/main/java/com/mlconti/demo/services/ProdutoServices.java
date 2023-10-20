@@ -56,7 +56,7 @@ public class ProdutoServices {
         Optional<Produto> produto = produtoRespository.findById(pIdProduto);
 
         if (produto.isEmpty()) {
-            mensagem.setMensagem("Categoria com o id " + pIdProduto + " não encontrada");
+            mensagem.setMensagem("Produto com o id " + pIdProduto + " não encontradi");
             mensagem.setType("ERRO");
             return ResponseEntity.badRequest().body(mensagem);
         }
@@ -66,7 +66,7 @@ public class ProdutoServices {
 
         } catch (DataIntegrityViolationException e) {
             mensagem.setMensagem(
-                    "Produto " + pIdProduto + " não pode ser excluída.");
+                    "Produto " + pIdProduto + " não pode ser excluído.");
             mensagem.setType("ERRO");
             return ResponseEntity.badRequest().body(mensagem);
         }
