@@ -59,18 +59,13 @@ public class CategoriaController {
     @PutMapping(value = "/{id}")
     public ResponseEntity<Categoria> updateCategory(@Valid @PathVariable Integer id,
             @RequestBody Categoria pCategoria) {
-        Categoria categoriaAtual = caterogiaRepository.findById(id).orElseThrow(
-                () -> new ObjectNotFoundException("Categoria  " + id + " não encontrada"));
-
-        categoriaAtual.setDs_categoria(pCategoria.getDs_categoria());
-        caterogiaRepository.save(categoriaAtual);
-        return ResponseEntity.ok().body(categoriaAtual);
+        Categoria categoria = categoriaServices.updateCategoria(pCategoria, id);
+        return ResponseEntity.ok().body(categoria);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<DeleteError> deleteCategoria(@PathVariable Integer id) {
-        DeleteError response = categoriaServices.deleteCategoria(id);
 
-        return ResponseEntity.ok().body(response);
+        return categoriaServices.deleteCategoria(id);
     }
 }
