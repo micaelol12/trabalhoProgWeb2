@@ -66,7 +66,7 @@ public class EnderecoServices {
 
         } catch (DataIntegrityViolationException e) {
             mensagem.setMensagem(
-                    "Endereco " + pIdEndereco + " não pode ser excluído.");
+                    "Endereco " + pIdEndereco + " não pode ser excluído. Pois possui clientes alocados");
             mensagem.setType("ERRO");
             return ResponseEntity.badRequest().body(mensagem);
         }

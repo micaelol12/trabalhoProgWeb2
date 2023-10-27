@@ -1,5 +1,7 @@
 package com.mlconti.demo.domain;
 
+import java.io.Serializable;
+
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.Entity;
@@ -8,7 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Municipio {
+public class Municipio  implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

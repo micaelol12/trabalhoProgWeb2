@@ -1,5 +1,7 @@
 package com.mlconti.demo.domain;
 
+import java.io.Serializable;
+
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
@@ -13,7 +15,7 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotEmpty;
 
 @Entity
-public class Produto {
+public class Produto implements Serializable {
 
     public Produto() {
     }

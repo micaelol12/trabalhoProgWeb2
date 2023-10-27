@@ -1,5 +1,7 @@
 package com.mlconti.demo.domain;
 
+import java.io.Serializable;
+
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.Entity;
@@ -12,7 +14,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-public class Endereco {
+public class Endereco  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
