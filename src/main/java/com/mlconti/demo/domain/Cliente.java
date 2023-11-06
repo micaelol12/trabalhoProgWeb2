@@ -21,7 +21,7 @@ public class Cliente implements Serializable {
 
     public Cliente(Integer cd_cliente,
             @NotEmpty(message = "Campo nm_cliente não pode ser vazio!") @Length(min = 5, max = 100, message = "Campo nm_cliente deve ter entre 5 e 100 caracteres") String nm_cliente,
-            @DecimalMin(value = "0.0", message = "Campo vl_limite_cred não pode ser vazio!") Float vl_limite_cred,
+            @DecimalMin(value = "0.0", message = "Campo vl_limite_cred não pode ser vazio!") Double vl_limite_cred,
             @NotEmpty(message = "Campo ds_email não pode ser vazio!") @Length(min = 5, max = 50, message = "Campo ds_email deve ter entre 5 e 50 caracteres") String ds_email,
             @NotEmpty(message = "Campo nr_telefone não pode ser vazio!") @Length(min = 5, max = 15, message = "Campo nr_telefone deve ter entre 5 e 15 caracteres") String nr_telefone,
             Endereco endereco) {
@@ -40,7 +40,7 @@ public class Cliente implements Serializable {
     @Length(min = 5, max = 100, message = "Campo nm_cliente deve ter entre 5 e 100 caracteres")
     String nm_cliente;
     @DecimalMin(value = "0.0", message = "Campo vl_limite_cred não pode ser vazio!")
-    Float vl_limite_cred;
+    Double vl_limite_cred;
     @NotEmpty(message = "Campo ds_email não pode ser vazio!")
     @Length(min = 5, max = 50, message = "Campo ds_email deve ter entre 5 e 50 caracteres")
     String ds_email;
@@ -67,11 +67,11 @@ public class Cliente implements Serializable {
         this.nm_cliente = nm_cliente;
     }
 
-    public Float getVl_limite_cred() {
+    public Double getVl_limite_cred() {
         return vl_limite_cred;
     }
 
-    public void setVl_limite_cred(Float vl_limite_cred) {
+    public void setVl_limite_cred(Double vl_limite_cred) {
         this.vl_limite_cred = vl_limite_cred;
     }
 

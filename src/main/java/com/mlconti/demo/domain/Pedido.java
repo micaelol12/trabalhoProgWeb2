@@ -2,6 +2,7 @@ package com.mlconti.demo.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,14 +14,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.DecimalMin;
 
 @Entity
 public class Pedido implements Serializable {
 
     public Pedido(Integer nr_pedido,
-            @DateTimeFormat(pattern = "dd/MMyyyy") @JsonFormat(pattern = "dd/MM/yyyy") LocalDate dt_emissao,
-            @DecimalMin(value = "0.0", message = "Campo vl_total não pode ser vazio!") Float vl_total,
+            @DateTimeFormat(pattern = "dd/MM/yyyy") @JsonFormat(pattern = "dd/MM/yyyy") LocalDate dt_emissao,
+            @DecimalMin(value = "0.0", message = "Campo vl_total não pode ser vazio!") Double vl_total,
             Cliente cliente) {
         this.nr_pedido = nr_pedido;
         this.dt_emissao = dt_emissao;
@@ -35,10 +37,13 @@ public class Pedido implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy")
     LocalDate dt_emissao;
     @DecimalMin(value = "0.0", message = "Campo vl_total não pode ser vazio!")
-    Float vl_total;
+    Double vl_total;
     @ManyToOne
     @JoinColumn(name = "cd_cliente")
     Cliente cliente;
+
+    @OneToMany(mappedBy = "pedido")
+    List<Item_pedido> item_pedido;
 
     public Pedido() {
     }
@@ -59,11 +64,11 @@ public class Pedido implements Serializable {
         this.dt_emissao = dt_emissao;
     }
 
-    public Float getVl_total() {
+    public Double getVl_total() {
         return vl_total;
     }
 
-    public void setVl_total(Float vl_total) {
+    public void setVl_total(Double vl_total) {
         this.vl_total = vl_total;
     }
 

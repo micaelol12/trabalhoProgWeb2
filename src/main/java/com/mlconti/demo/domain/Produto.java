@@ -1,6 +1,7 @@
 package com.mlconti.demo.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
@@ -11,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotEmpty;
 
@@ -46,6 +48,9 @@ public class Produto implements Serializable {
     @JoinColumn(name = "cd_categoria")
     private Categoria categoria;
 
+    @OneToMany(mappedBy = "produto")
+    List<Item_pedido> item_pedido;
+    
     public Integer getCd_produto() {
         return cd_produto;
     }
