@@ -40,14 +40,14 @@ public class DemoApplication {
 			Categoria cate2 = new Categoria(null, "lazer");
 
 			Produto produto1 = new Produto(null, "bolinha de tênis", 5, 4.00, cate1);
-			Produto produto2 = new Produto(null, "sofá", 2, 250.99, cate2);
+			Produto produto2 = new Produto(null, "sofá de couro", 2, 250.99, cate2);
 
 			Municipio municipio1 = new Municipio(null, "Rodeio", "SC");
 			Municipio municipio2 = new Municipio(null, "Blumenau", "SC");
 
-			Endereco endereco1 = new Endereco(null, "Faustino Pasquali", "", "Rodeio doze", 30, "89136-000",
+			Endereco endereco1 = new Endereco(null, "Faustino Pasquali", null, "Rodeio doze", 30, "89136000",
 					municipio1);
-			Endereco endereco2 = new Endereco(null, "R. 7 de Setembro", "", "Velha", 2713, "89012-401", municipio2);
+			Endereco endereco2 = new Endereco(null, "R. 7 de Setembro", null, "Velha", 2713, "89012401", municipio2);
 
 			Cliente cliente1 = new Cliente(null, "Micael Conti", 3200.40, "micael.conti@gmail.com", "47996532896",
 					endereco1);
