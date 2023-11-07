@@ -68,8 +68,17 @@ public class ProdutoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<DeleteError> deleteProduto(@PathVariable Integer id) {
-
         return produtoServices.deleteProduto(id);
-
     }
+
+    @GetMapping("/nome/{nome}")
+    public ResponseEntity<List<Produto>> findByName(@PathVariable String nome) {
+        return ResponseEntity.ok().body(produtoRespository.findByName(nome.toUpperCase()));
+    }
+
+   @GetMapping("/categoria/{id_categoria}")
+    public ResponseEntity<List<Produto>> findByCategoria(@PathVariable Integer id_categoria) {
+        return ResponseEntity.ok().body(produtoRespository.findByCategoria(id_categoria));
+    }
+
 }

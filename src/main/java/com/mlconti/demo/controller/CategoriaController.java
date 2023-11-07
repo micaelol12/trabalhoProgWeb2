@@ -68,4 +68,10 @@ public class CategoriaController {
 
         return categoriaServices.deleteCategoria(id);
     }
+
+    
+    @GetMapping("/nome/{nome}")
+    public ResponseEntity<List<Categoria>> findByName(@PathVariable String nome) {
+        return ResponseEntity.ok().body(caterogiaRepository.findByName(nome.toUpperCase()));
+    }
 }
