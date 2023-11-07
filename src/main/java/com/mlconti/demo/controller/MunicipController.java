@@ -26,14 +26,12 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping(value = "/municipio")
 public class MunicipController {
-    
+
     @Autowired
     private MunicipioRepository municipioRepository;
 
     @Autowired
     private MunicipioServices municipioServices;
-
-   
 
     @PostMapping
     public ResponseEntity<Municipio> create(@Valid @RequestBody Municipio pMunicipio) {
@@ -67,7 +65,16 @@ public class MunicipController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<DeleteError> deleteCategoria(@PathVariable Integer id) {
-
         return municipioServices.deleteMunicipio(id);
+    }
+
+    @GetMapping("/nome/{nome}")
+    public ResponseEntity<List<Municipio>> findByName(@PathVariable String nome) {
+        return ResponseEntity.ok().body(municipioRepository.findByName(nome.toUpperCase()));
+    }
+
+    @GetMapping("/uf/{nome}")
+    public ResponseEntity<List<Municipio>> findByUF(@PathVariable String nome) {
+        return ResponseEntity.ok().body(municipioRepository.findByUF(nome.toUpperCase()));
     }
 }
