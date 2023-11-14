@@ -32,15 +32,15 @@ public class Pedido implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer nr_pedido;
+    private Integer nr_pedido;
     @DateTimeFormat(pattern = "dd/MMyyyy")
     @JsonFormat(pattern = "dd/MM/yyyy")
-    LocalDate dt_emissao;
+    private LocalDate dt_emissao;
     @DecimalMin(value = "0.0", message = "Campo vl_total não pode ser vazio!")
-    Double vl_total;
+    private Double vl_total;
     @ManyToOne
     @JoinColumn(name = "cd_cliente")
-    Cliente cliente;
+    private Cliente cliente;
 
     @OneToMany(mappedBy = "pedido")
     List<Item_pedido> item_pedido;

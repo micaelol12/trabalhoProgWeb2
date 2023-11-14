@@ -35,21 +35,21 @@ public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer cd_cliente;
+    private Integer cd_cliente;
     @NotEmpty(message = "Campo nm_cliente não pode ser vazio!")
     @Length(min = 5, max = 100, message = "Campo nm_cliente deve ter entre 5 e 100 caracteres")
-    String nm_cliente;
+    private String nm_cliente;
     @DecimalMin(value = "0.0", message = "Campo vl_limite_cred não pode ser vazio!")
-    Double vl_limite_cred;
+    private Double vl_limite_cred;
     @NotEmpty(message = "Campo ds_email não pode ser vazio!")
     @Length(min = 5, max = 50, message = "Campo ds_email deve ter entre 5 e 50 caracteres")
-    String ds_email;
+    private String ds_email;
     @NotEmpty(message = "Campo nr_telefone não pode ser vazio!")
     @Length(min = 5, max = 15, message = "Campo nr_telefone deve ter entre 5 e 15 caracteres")
-    String nr_telefone;
+    private String nr_telefone;
     @ManyToOne
     @JoinColumn(name = "cd_endereco")
-    Endereco endereco;
+    private Endereco endereco;
 
     public Integer getCd_cliente() {
         return cd_cliente;

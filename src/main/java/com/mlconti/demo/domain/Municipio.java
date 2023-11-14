@@ -14,11 +14,11 @@ public class Municipio  implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer cd_municipio;
+    private Integer cd_municipio;
     @Length(min = 5, max = 255, message = "Campo nm_localidade deve ter entre 2 e 40 caracteres")
-    String nm_localidade;
+    private String nm_localidade;
     @Length(min = 2, max = 2, message = "Campo sg_uf deve ter entre2 caracteres")
-    String sg_uf;
+    private String sg_uf;
 
     public Municipio(Integer cd_municipio,
             @Length(min = 5, max = 255, message = "Campo nm_localidade deve ter entre 2 e 40 caracteres") String nm_localidade,

@@ -14,27 +14,27 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-public class Endereco  implements Serializable {
+public class Endereco implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer cd_endereco;
+    private Integer cd_endereco;
     @NotEmpty(message = "Campo ds_logradouro não pode ser vazio!")
     @Length(min = 5, max = 100, message = "Campo ds_logradouro deve ter entre 5 e 100 caracteres")
-    String ds_logradouro;
+    private String ds_logradouro;
     @Length(min = 5, max = 100, message = "Campo ds_complemento deve ter entre 5 e 100 caracteres")
-    String ds_complemento;
+    private String ds_complemento;
     @NotEmpty(message = "Campo nm_bairro não pode ser vazio!")
     @Length(min = 5, max = 100, message = "Campo nm_bairro deve ter entre 5 e 100 caracteres")
-    String nm_bairro;
+    private String nm_bairro;
     @NotNull(message = "Campo numero não pode ser vazio!")
     Integer numero;
     @NotEmpty(message = "Campo nr_cep não pode ser vazio!")
     @Length(min = 8, max = 8, message = "Campo nr_cep deve ter 8 caracteres")
-    String nr_cep;
+    private String nr_cep;
     @ManyToOne
     @JoinColumn(name = "cd_municipio")
-    Municipio municipio;
+    private Municipio municipio;
 
     public Endereco() {
     }
