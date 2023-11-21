@@ -57,6 +57,15 @@ public class EnderecoController {
         return ResponseEntity.ok().body(produto);
     }
 
+    
+    @GetMapping("/municipio/{id}")
+    public ResponseEntity<List<Endereco>> getByMunicipio(@PathVariable Integer id) {
+        List<Endereco> enderecos = enderecoRepository.findByMunicipio(id);
+
+
+        return ResponseEntity.ok().body(enderecos);
+    }
+
     @PutMapping(value = "/{id}/municipio/{municipio_id}")
     public ResponseEntity<Endereco> updateEndereco(@Valid @PathVariable Integer id,
 
